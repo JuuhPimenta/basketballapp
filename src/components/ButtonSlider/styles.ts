@@ -5,7 +5,13 @@ export const styles = StyleSheet.create({
     ball: {
         width: 30,
         height: 30,
-        backgroundColor: colors.third,
+        backgroundColor: colors.secundary,
+        borderRadius: 15
+    },
+    bolinha: {
+        width:30,
+        heigth: 30,
+        backgroundColor: colors.grey,
         borderRadius: 15
     }
 })

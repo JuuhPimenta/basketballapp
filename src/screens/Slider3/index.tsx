@@ -1,19 +1,20 @@
 import React from "react";
-import { FlatList, View } from "react-native/types";
+import { FlatList,ImageBackground, View } from 'react-native';
 import { IPage } from "../../../App";
 import { ComponentButtonSlider, ComponentListMaker, ComponentTitleSlider } from "../../components";
 import { styles } from "./styles";
 
 export function Slider3({ setPageI }: IPage){
+    const slide3 = require("../../assets/slide2.png")
     const slide1Texts = [
-        { id: '1', text: 'Notas'},
-        { id: '2', text: 'Intervalos'},
-        { id: '3', text: 'Acordes'},
+        { id: '1', text: ' Europa League'},
+        { id: '2', text: ' NBB'},
+        { id: '3', text: ' FIBA'},
     ]
     return(
-        <>
+        <ImageBackground source={slide3} style={styles.container} >
         <View style={styles.panel}>
-            <ComponentTitleSlider titleI="Pricipais"/>
+            <ComponentTitleSlider titleI="Outras Ligas"/>
             <FlatList
                 data={slide1Texts}
                 renderItem={({ item }) => 
@@ -23,11 +24,11 @@ export function Slider3({ setPageI }: IPage){
             />
         </View>
         <View style={styles.buttonSlider}>
-            <ComponentButtonSlider onPressI={() => setPageI(1)}/>
-            <ComponentButtonSlider onPressI={() => setPageI(2)}/>
-            <ComponentButtonSlider onPressI={() => setPageI(3)}/>
-            <ComponentButtonSlider onPressI={() => setPageI(4)}/>
+            <ComponentButtonSlider onPressI={() => setPageI(1)} page={false}/>
+            <ComponentButtonSlider onPressI={() => setPageI(2)} page={false}/>
+            <ComponentButtonSlider onPressI={() => setPageI(3)} page={true}/>
+            <ComponentButtonSlider onPressI={() => setPageI(4)} page={false}/>
         </View>
-        </>
+        </ImageBackground>
     );
 }

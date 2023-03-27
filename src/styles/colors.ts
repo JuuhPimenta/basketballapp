@@ -5,4 +5,5 @@ export const colors = {
   thirdLight: 'rgba(217,217,217, 0.8)',
   black: '#000',
   white: '#FFF',
+  grey: '#808080',
 }
