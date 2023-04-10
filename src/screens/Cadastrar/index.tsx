@@ -1,21 +1,31 @@
 import React from "react"
 import { View, KeyboardAvoidingView, Text } from "react-native"
 import { FontAwesome } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import { styles } from "./styles"
 import { TextInput } from "react-native-gesture-handler";
 import { colors } from "../../styles/colors"
 import {ComponentButtonInterface} from "../../components"
-import { LoginTypes } from "../../navigations/login.navigation"; 
+import { LoginTypes } from "../../navigations/login.navigation";
 import { Navigations } from "../../navigations";
 
-export function Login( {navigation}: LoginTypes) {
+export function Cadastrar( {navigation}: LoginTypes) {
 
   return (
 
     <View style={styles.container}>
       <KeyboardAvoidingView>
-        <Text style={styles.title}>Login</Text>
+        <Text style={styles.title}>Cadastrar</Text>
+        <View style={styles.formRow}>
+          <Feather name="user" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Nome"
+            placeholderTextColor={colors.third}
+            autoCapitalize="none"
+          />
+        </View>
         <View style={styles.formRow}>
           <MaterialIcons name="email" style={styles.icon} />
           <TextInput
@@ -33,12 +43,12 @@ export function Login( {navigation}: LoginTypes) {
             style={styles.input}
             placeholder="Senha"
             placeholderTextColor={colors.third}
-            secureTextEntry = {true}
+            secureTextEntry={true}
             autoCapitalize="none"
           />
         </View>
-        <ComponentButtonInterface title="Entrar" type="primary" onPressI={() => {console.log ('login')}} />
-        <ComponentButtonInterface title="Cadastrar" type="primary"  onPressI={() => {navigation.navigate ('Cadastrar')}} />
+        <ComponentButtonInterface title="Salvar" type="primary" onPressI={() => {console.log ('Salvar')}} />
+        <ComponentButtonInterface title="Login" type="primary" onPressI={() => {navigation.navigate ('login')}} />
       </KeyboardAvoidingView>
     </View>
     
