@@ -47,7 +47,7 @@ export function Cadastrar( {navigation}: LoginTypes) {
             autoCapitalize="none"
           />
         </View>
-        <ComponentButtonInterface title="Salvar" type="primary" onPressI={() => {console.log ('Salvar')}} />
+        <ComponentButtonInterface title="Salvar" type="primary" onPressI={() => { navigation.navigate ('Drawer')}} />
         <ComponentButtonInterface title="Login" type="primary" onPressI={() => {navigation.navigate ('Login')}} />
       </KeyboardAvoidingView>
     </View>

@@ -7,7 +7,6 @@ import { TextInput } from "react-native-gesture-handler";
 import { colors } from "../../styles/colors"
 import {ComponentButtonInterface} from "../../components"
 import { LoginTypes } from "../../navigations/login.navigation"; 
-import { Navigations } from "../../navigations";
 
 export function Login( {navigation}: LoginTypes) {
 
@@ -37,8 +36,8 @@ export function Login( {navigation}: LoginTypes) {
             autoCapitalize="none"
           />
         </View>
-        <ComponentButtonInterface title="Entrar" type="primary" onPressI={() => {console.log ('login')}} />
-        <ComponentButtonInterface title="Cadastrar" type="primary"  onPressI={() => {navigation.navigate ('Cadastrar')}} />
+        <ComponentButtonInterface title="Entrar" type="primary" onPressI={() => {navigation.navigate('Tab')}} />
+        <ComponentButtonInterface title="Cadastrar" type="primary"  onPressI={() => {navigation.navigate('Cadastrar')}} />
       </KeyboardAvoidingView>
     </View>
     
