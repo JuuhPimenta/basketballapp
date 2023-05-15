@@ -1,10 +1,11 @@
 import React from "react";
 import { DrawerNavigationProp, createDrawerNavigator } from '@react-navigation/drawer';
-import { Screenperfil } from "../screens"
+import { ScreenCamera, Screenperfil } from "../screens"
 import { colors } from "../styles/colors"
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 type DrawerParamList = {
     Perfil: undefined
+    Camera: undefined
 }
 type DrawerScreenNavigationProp = DrawerNavigationProp<DrawerParamList, "Perfil">
 export type TabParamList = {
@@ -14,7 +15,7 @@ export function DrawerNavigation() {
     const Drawer = createDrawerNavigator<DrawerParamList>();
     return (
         <Drawer.Navigator screenOptions={{
-            drawerStyle :{
+            drawerStyle: {
                 backgroundColor: colors.primary
             },
             drawerActiveTintColor: colors.white
@@ -22,9 +23,16 @@ export function DrawerNavigation() {
 
             <Drawer.Screen name="Perfil" component={Screenperfil}
                 options={{
-                
-                }}
+
+                    drawerIcon: () => (
+                        <Feather name="camera" size={24} color="black" />
+
+                    )
+                }
+                }
             />
+
+            <Drawer.Screen name="Camera" component={ScreenCamera} />
         </Drawer.Navigator>
     );
 }
