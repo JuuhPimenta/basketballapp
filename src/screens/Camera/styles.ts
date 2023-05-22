@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     },
     camera: {
       flex: 1,
+      justifyContent: "flex-end",
+      alignItems: "center",
+      marginBottom: 10
     },
     buttonContainer: {
       flex: 1,
@@ -27,7 +30,7 @@ export const styles = StyleSheet.create({
     },
     img: {
         width: Dimensions.get('window').width * 0.7,
-        heigth: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').width * 0.7,
 
     }
   });

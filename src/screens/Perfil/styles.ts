@@ -6,5 +6,6 @@ export const styles = StyleSheet.create({
         alginItems: 'center',
         justifyContent: 'center'
     }
+    
 
 })

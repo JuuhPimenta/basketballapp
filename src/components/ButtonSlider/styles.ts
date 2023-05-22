@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     },
     bolinha: {
         width:30,
-        heigth: 30,
+        height:30,
         backgroundColor: colors.grey,
         borderRadius: 15
     }

@@ -1,33 +1,52 @@
-import { Camera, CameraType } from 'expo-camera';
+import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
 import { useRef, useState } from 'react';
-import { Button,Text, Image, View } from 'react-native';
-import { ComponentButtonInterface } from '../../components';
-import { styles } from './styles'
+import { Button, Text, Image, View, Alert } from 'react-native';
+import { ComponentButtonInterface, ComponentButtonTakePicture } from '../../components';
+import { ButtonTakePicture } from '../../components/ButtonTakePicture';
+import { styles } from './styles';
+import * as MediaLibrary from 'expo-media-library'
+import * as ImagePicker from 'expo-image-picker';
 
 interface IPhoto {
-  heigth: string
   uri: string
   width: string
 }
 
 export function CameraScreen() {
   const [type, setType] = useState(CameraType.back);
-  const [permission, requestPermission] = Camera.useCameraPermissions();
-  const [photo, setPhoto] = useState <IPhoto>()
-  const ref = useRef(null)
+  const [permissionCamera, requestPermissionCamera] = Camera.useCameraPermissions();
+  const [permissionMedia, requestPermissionMedia] = MediaLibrary.usePermissions()
+  const [photo, setPhoto] = useState<CameraCapturedPicture | ImagePicker.ImagePickerAsset>()
+  const ref = useRef<Camera>(null)
+  const [vePhoto] = useState(1)
 
 
-  if (!permission) {
+  if (!permissionCamera) {
     // Camera permissions are still loading
     return <View />;
   }
 
-  if (!permission.granted) {
+  if (!permissionCamera.granted) {
     // Camera permissions are not granted yet
     return (
       <View style={styles.container}>
         <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="grant permission" />
+        <Button onPress={requestPermissionCamera} title="grant permission" />
+      </View>
+    );
+  }
+
+  if (!permissionMedia) {
+    // Camera permissions are still loading
+    return <View />;
+  }
+
+  if (!permissionMedia.granted) {
+    // Camera permissions are not granted yet
+    return (
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>We need your permission to show the media</Text>
+        <Button onPress={requestPermissionMedia} title="grant permission" />
       </View>
     );
   }
@@ -42,17 +61,43 @@ export function CameraScreen() {
       const picture = await ref.current.takePictureAsync()
       setPhoto(picture)
     }
-    
+
+  }
+
+  async function savePhoto() {
+    const asset = await MediaLibrary.createAssetAsync(photo!.uri)
+    MediaLibrary.createAlbumAsync("Images", asset, false)
+    Alert.alert("Imagem salva com sucesso!")
+
+  }
+
+  async function pickImage() {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1
+    })
+    if (!result.canceled) {
+      setPhoto(result.assets[0])
+    }
+
   }
 
   return (
     <View style={styles.container}>
-      <ComponentButtonInterface title='Flip' type='primary' onPressI={toggleCameraType}/>
-      <Camera style={styles.camera} type={type} ref={ref} />
-      <ComponentButtonInterface title='Foto' type='primary' onPressI={takePicture} />
+    
+      <ComponentButtonInterface title='Trocar' type='primary' onPressI={toggleCameraType}/>
+      <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'>
+        <ComponentButtonTakePicture onPress={takePicture} />
+      </Camera>
+      
+    
       {photo && photo.uri && (
-        <Image source={{uri: photo.uri}} style={styles.img}/>
+        <Image source={{ uri: photo.uri }} style={styles.img} />
       )}
+      <ComponentButtonInterface title='Salvar Imagem' type='primary' onPressI={savePhoto} />
+      <ComponentButtonInterface title='Abrir Imagem' type='primary' onPressI={pickImage} />
     </View>
   );
 }
+
