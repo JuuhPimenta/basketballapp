@@ -18,7 +18,7 @@ export function CameraScreen() {
   const [permissionMedia, requestPermissionMedia] = MediaLibrary.usePermissions()
   const [photo, setPhoto] = useState<CameraCapturedPicture | ImagePicker.ImagePickerAsset>()
   const ref = useRef<Camera>(null)
-  const [vePhoto] = useState(1)
+  const [vePhoto, setvePhoto] = useState(1)
 
 
   if (!permissionCamera) {
@@ -60,6 +60,7 @@ export function CameraScreen() {
     if (ref.current) {
       const picture = await ref.current.takePictureAsync()
       setPhoto(picture)
+      setvePhoto(2)
     }
 
   }
@@ -85,19 +86,26 @@ export function CameraScreen() {
 
   return (
     <View style={styles.container}>
-    
-      <ComponentButtonInterface title='Trocar' type='primary' onPressI={toggleCameraType}/>
-      <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'>
-        <ComponentButtonTakePicture onPress={takePicture} />
-      </Camera>
-      
-    
-      {photo && photo.uri && (
-        <Image source={{ uri: photo.uri }} style={styles.img} />
+
+      {vePhoto == 1 ? (
+        <>
+          <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'>
+            <ComponentButtonInterface title='Trocar' type='primary' onPressI={toggleCameraType} />
+            <ComponentButtonTakePicture onPress={takePicture}/>
+          </Camera>
+        </>
+      ) : (
+        <>
+          {photo && photo.uri && (
+            <Image source={{ uri: photo.uri }} style={styles.img} />
+          )}
+          <ComponentButtonInterface title='Salvar Imagem' type='primary' onPressI={savePhoto} />
+          <ComponentButtonInterface title='Abrir Imagem' type='primary' onPressI={pickImage} />
+        </>
       )}
-      <ComponentButtonInterface title='Salvar Imagem' type='primary' onPressI={savePhoto} />
-      <ComponentButtonInterface title='Abrir Imagem' type='primary' onPressI={pickImage} />
+
     </View>
+
   );
 }
 
