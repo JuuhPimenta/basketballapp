@@ -35,7 +35,7 @@ export function TabNavigation() {
             <Tab.Screen name="Camera" component={ScreenCamera}
                 options={{
                     tabBarIcon: () => (
-                        <Feather name="camera" size={24} color="black" />
+                        <Feather name="camera" size={24} color="white" />
                     )
                 }
 

@@ -99,6 +99,7 @@ export function CameraScreen() {
           {photo && photo.uri && (
             <Image source={{ uri: photo.uri }} style={styles.img} />
           )}
+          <ComponentButtonInterface title='Tirar Foto' type='primary' onPressI={() => setvePhoto(1)} />
           <ComponentButtonInterface title='Salvar Imagem' type='primary' onPressI={savePhoto} />
           <ComponentButtonInterface title='Abrir Imagem' type='primary' onPressI={pickImage} />
         </>
