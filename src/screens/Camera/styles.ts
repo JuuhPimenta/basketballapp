@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
      
     },
     camera: {
-      flex: 1,
+      flex: 3,
       justifyContent: "flex-end",
       alignItems: "center",
       marginBottom: 10
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     button: {
       flexDirection: 'row',
       marginBottom: '10%',
-      justifyContent: 'space-around'
+      justifyContent:"flex-end"
     },
     text: {
       fontSize: 24,
@@ -29,8 +29,10 @@ export const styles = StyleSheet.create({
       color: 'white',
     },
     img: {
-        width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').width * 0.7,
+        flex: 0.90,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width,
+        
 
     },
     sorriso: {
@@ -43,7 +45,14 @@ export const styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: 'bold',
       color: 'black',
+    },
+    seta : {
+      flexDirection: 'column',
+      marginBottom: '75%',
+    },
+    voltar: {
+      marginLeft: '5%',
+      marginBottom: '10%',
     }
-
   });
   

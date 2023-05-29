@@ -1,6 +1,7 @@
 import { Camera, CameraCapturedPicture, CameraType, FaceDetectionResult } from 'expo-camera';
 import { useRef, useState } from 'react';
-import { Button, Text, Image, View, Alert } from 'react-native';
+import { Button, Text, Image, View, Alert, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import { ComponentButtonInterface, ComponentButtonTakePicture } from '../../components';
 import { ButtonTakePicture } from '../../components/ButtonTakePicture';
 import { styles } from './styles';
@@ -122,7 +123,7 @@ export function CameraScreen() {
       {vePhoto == 1 ? (
         <>
           <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'
-            onBarCodeScanned={scanned==2 ? undefined : handleBarCodeScanned}
+            onBarCodeScanned={scanned == 2 ? undefined : handleBarCodeScanned}
             onFacesDetected={handleFacesDetected}
             faceDetectorSettings={{
               mode: FaceDetector.FaceDetectorMode.accurate,
@@ -133,12 +134,16 @@ export function CameraScreen() {
             }}
 
           >
+            <View style={styles.seta}>
+              <TouchableOpacity onPress={toggleCameraType} >
+                <AntDesign name="retweet" size={60} color="black" />
+              </TouchableOpacity>
+            </View>
             <View style={styles.button}>
-              <ComponentButtonInterface title='Trocar' type='primary' onPressI={toggleCameraType} />
               <ComponentButtonTakePicture onPress={takePicture} />
             </View>
           </Camera>
-          <ComponentButtonInterface title='Ler Denovo' type='primary' onPressI={() => setScanned (1)} />
+          <ComponentButtonInterface title='Ler Denovo' type='primary' onPressI={() => setScanned(1)} />
           <View style={styles.sorriso}>
             {face && face.smilingProbability && face.smilingProbability > 0.5 ? (
               <Text style={styles.textf}>Sorrindo</Text>
@@ -149,10 +154,14 @@ export function CameraScreen() {
         </>
       ) : (
         <>
+          <View style={styles.voltar}>
+            <TouchableOpacity onPress={() => setvePhoto(1)} >
+              <AntDesign name="leftcircle" size={40} color="black" />
+            </TouchableOpacity>
+          </View>
           {photo && photo.uri && (
             <Image source={{ uri: photo.uri }} style={styles.img} />
           )}
-          <ComponentButtonInterface title='Tirar Foto' type='primary' onPressI={() => setvePhoto(1)} />
           <ComponentButtonInterface title='Salvar Imagem' type='primary' onPressI={savePhoto} />
           <ComponentButtonInterface title='Abrir Imagem' type='primary' onPressI={pickImage} />
         </>
