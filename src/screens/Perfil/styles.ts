@@ -5,6 +5,8 @@ export const styles = StyleSheet.create({
         flex: 1 ,
         alginItems: 'center',
         justifyContent: 'center'
+        
+        
     }
     
 

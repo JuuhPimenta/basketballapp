@@ -19,9 +19,9 @@ export const styles = StyleSheet.create({
       margin: 64,
     },
     button: {
-      flex: 1,
-      alignSelf: 'flex-end',
-      alignItems: 'center',
+      flexDirection: 'row',
+      marginBottom: '10%',
+      justifyContent: 'space-around'
     },
     text: {
       fontSize: 24,
@@ -32,6 +32,18 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.7,
         height: Dimensions.get('window').width * 0.7,
 
+    },
+    sorriso: {
+      flex: 1,
+      justifyContent: 'center' ,
+      alignItems: 'center',
+    
+    },
+    textf: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: 'black',
     }
+
   });
   
