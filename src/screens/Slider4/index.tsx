@@ -6,7 +6,7 @@ import { styles } from "./styles";
 
 export function Slider4({ setPageI }: IPage){
     const slide1Texts = [
-        { id: '1', text: ' Escoleher Time'},
+        { id: '1', text: ' Escolher Time'},
         { id: '2', text: ' Dados Pessoais'},
         { id: '3', text: ' Configuraçoes'},
     ]

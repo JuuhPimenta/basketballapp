@@ -148,7 +148,7 @@ export function CameraScreen() {
             {face && face.smilingProbability && face.smilingProbability > 0.5 ? (
               <Text style={styles.textf}>Sorrindo</Text>
             ) : (
-              <Text style={styles.textf}>Não</Text>
+              <Text style={styles.textf}>Séria</Text>
             )}
           </View>
         </>
