@@ -1,14 +1,56 @@
-import React from "react"
-import { View, KeyboardAvoidingView, Text } from "react-native"
-import { FontAwesome } from '@expo/vector-icons';
-import { Entypo, MaterialIcons } from '@expo/vector-icons';
-import { styles } from "./styles"
+import React, {useEffect,useState} from "react";
+import { View, TouchableOpacity, Text, KeyboardAvoidingView, Alert } from "react-native";
+import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import { TextInput } from "react-native-gesture-handler";
-import { colors } from "../../styles/colors"
-import {ComponentButtonInterface} from "../../components"
-import { LoginTypes } from "../../navigations/login.navigation"; 
+import { IPage } from '../../../App';
+import { ComponentTitleSlider, ComponentButtonSlider, ComponentButtonInterface } from '../../components';
+import { colors } from "../../styles/colors";
+import { styles } from "./styles";
+import { LoginTypes } from "../../navigations/login.navigation"
+import { useAuth } from "../../hooks/auth";
+import { IAuthenticate, IUserLogin } from "../../services/data/User";
+import { apiUser } from "../../services/data";
+import { AxiosError } from "axios";
 
-export function Login( {navigation}: LoginTypes) {
+export interface IErrorApi{
+  errors: {
+      rule: string
+      field: string
+      message: string
+  }[]
+}
+
+export function Login({navigation}:LoginTypes) {
+  const { signIn } = useAuth();
+  const [data,setData] = useState<IAuthenticate>();
+  const [isLoading, setIsLoading] = useState(true);
+  
+  async function handleSignIn(){
+      try{
+          setIsLoading(true);
+          if(data?.email && data.password){
+              await signIn(data);
+          } else {
+              Alert.alert("Preencha todos os campos");
+              setIsLoading(false);
+          }
+      }catch(error){
+          const err = error as AxiosError;
+          const message = err.response?.data as string
+          Alert.alert(message)
+          setIsLoading(false)
+      }
+  }
+
+  function handleChange(item: IAuthenticate){
+      setData({...data, ...item})
+  }
+
+  useEffect(() => {
+      setTimeout(() => {
+          setIsLoading(false)
+      },2000)
+  },[])
 
   return (
 
