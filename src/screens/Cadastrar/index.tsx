@@ -8,7 +8,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { colors } from "../../styles/colors"
 import {ComponentButtonInterface, ComponentLoading} from "../../components"
 import { LoginTypes } from "../../navigations/login.navigation";
-import { Navigations } from "../../navigations";
+import { Navigation } from "../../navigations";
 import { IRegister } from "../../services/data/User";
 import { AxiosError } from "axios";
 import { apiUser } from "../../services/data";
