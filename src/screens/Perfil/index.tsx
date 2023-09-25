@@ -1,21 +1,32 @@
 
-import React from 'react'
-import {View,Text} from 'react-native'
-import { ComponentButtonInterface } from '../../components'
-import { TabTypes } from '../../navigations/tab.navigations'
-import {styles} from "./styles"
+import React, {useEffect,useState} from "react";
+import { View, Text, Alert } from "react-native";
+import { styles } from "./styles";
+import { ComponentButtonInterface } from "../../components";
+import { TabTypes } from "../../navigations/tab.navigations";
+import { useAuth } from "../../hooks/auth";
+import { IAuthenticate } from "../../services/data/User";
+import { AxiosError } from "axios"
 
-
-export function Perfil({navigation}: TabTypes){
-    function handleVoltar (){
-        const tab = navigation.getParent()
-        tab?.goBack()
+export function Perfil({ navigation }: TabTypes) {
+    const { signOut } = useAuth();
+    const[isLoading, setIsLoading] = useState(true);
+    async function handleSignOut() {
+        try {
+            setIsLoading(true);
+            await signOut();
+        } catch (error) {
+            const err = error as AxiosError;
+            const message = err.response?.data as string
+            Alert.alert(message)
+            setIsLoading(false);
+        }
     }
-    return(
-        <View  style={styles.container}>
-            
-            <ComponentButtonInterface title='Voltar' type='primary' onPressI={handleVoltar} />
-        </View>
 
+    return (
+        <View style={styles.container}>
+            <Text>Perfil</Text>
+            <ComponentButtonInterface title="Log out" type="primary" onPressI={handleSignOut}/>
+        </View>
     )
 }

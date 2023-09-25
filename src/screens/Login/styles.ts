@@ -30,6 +30,11 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         padding: 10,
         width: "70%"
+    },
+    letra: {
+        fontSize: 15,
+        textAlign: "center",
+        color: colors.black
     }
 
 })

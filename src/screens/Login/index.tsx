@@ -80,9 +80,9 @@ export function Login({navigation}:LoginTypes) {
             onChangeText={(i) => handleChange({email: i})}
           />
         </View>
-        <ComponentButtonInterface title="Login" type="secundary" onPressI={handleSignIn}/>
-            <Text style={styles.title}>Ainda não tem uma conta?</Text>
-            <ComponentButtonInterface title="Register" type="secundary" onPressI={()=>{navigation.navigate("Cadastrar")}}/>
+        <ComponentButtonInterface title="Login" type="primary" onPressI={handleSignIn}/>
+            <ComponentButtonInterface title="Cadastrar" type="primary" onPressI={()=>{navigation.navigate("Cadastrar")}}/>
+            <Text style={styles.letra}>Ainda não tem uma conta?</Text>
       </KeyboardAvoidingView>
     </View>
     
