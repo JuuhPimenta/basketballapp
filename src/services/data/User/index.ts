@@ -21,12 +21,15 @@ export interface IUserLogin {
         expires_at: string
     }
 }
-class UserData{
+class UserData {
     register(data: IRegister){
         return api.post<IUser>('/register', data)
     }
-    login(data: IAuthenticate) {
-        return api.post<IUserLogin>('/login', data)
+    login(data: IAuthenticate){
+        return api.post<IUserLogin>('/login')
+    }
+    updateToken(token: string){
+        return api.put('/user', { token })
     }
 }
 export default new UserData()
