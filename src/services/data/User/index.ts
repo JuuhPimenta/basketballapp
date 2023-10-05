@@ -23,10 +23,10 @@ export interface IUserLogin {
 }
 class UserData {
     register(data: IRegister){
-        return api.post<IUser>('/register', data)
+        return api.post<IUser>('/register', data);
     }
     login(data: IAuthenticate){
-        return api.post<IUserLogin>('/login')
+        return api.post<IUserLogin>('/login', data);
     }
     updateToken(token: string){
         return api.put('/user', { token })

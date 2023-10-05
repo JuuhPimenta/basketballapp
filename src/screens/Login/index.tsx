@@ -77,7 +77,7 @@ export function Login({navigation}:LoginTypes) {
             placeholderTextColor={colors.third}
             secureTextEntry = {true}
             autoCapitalize="none"
-            onChangeText={(i) => handleChange({email: i})}
+            onChangeText={(i) => handleChange({password: i})}
           />
         </View>
         <ComponentButtonInterface title="Login" type="primary" onPressI={handleSignIn}/>
