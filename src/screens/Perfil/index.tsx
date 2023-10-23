@@ -19,19 +19,19 @@ Notifications.setNotificationHandler({
 });
 
 export function Perfil({ navigation }: TabTypes) {
-    const { singOut } = useAuth();
+    const { signOut } = useAuth();
     const[isLoading, setIsLoading] = useState(true);
     async function handleSignOut() {
         try {
             setIsLoading(true);
-            await singOut();
+            await signOut();
         } catch (error) {
             const err = error as AxiosError;
             const message = err.response?.data as string
             Alert.alert(message)
             setIsLoading(false);
         }
-    } [ singOut ];
+    } [ signOut ];
     useEffect(() => {
         async function fetchToken() {
             const token = await registerForPushNotificationsAsync()
@@ -42,8 +42,8 @@ export function Perfil({ navigation }: TabTypes) {
     return (
         
         <View style={styles.container}>
-            <Text>Perfil</Text>
-            <ComponentButtonInterface title="Voltar" type="primary" onPressI={handleSignOut} />
+            <Text style={styles.title}>Perfil</Text>
+            <ComponentButtonInterface title="Sair" type="primary" onPressI={handleSignOut} />
         </View>
     )
 }       
