@@ -7,3 +7,4 @@ export {Cadastrar as ScreenCadastrar} from "./Cadastrar"
 export {Perfil as Screenperfil} from "./Perfil"
 export {CameraScreen as ScreenCamera} from './Camera'
 export {LocationScreen as LocationScreen} from'./Location'
+export { Acelerometro as ScreenAcelerometer } from "./Acelerometro"
